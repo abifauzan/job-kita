@@ -1,4 +1,4 @@
-import React, { useMemo } from "react";
+import React, { useMemo, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import Button from "../../atoms/Button";
 import Logo from "../../atoms/Logo/Logo";
@@ -6,19 +6,43 @@ import { menu } from "./Navbar.enum";
 import { useLocation } from "react-router-dom";
 
 const Navbar = () => {
+  const [isScroll, setIsScroll] = useState(false);
   const location = useLocation();
   const { pathname } = location;
 
   const navbarActiveClass = useMemo(() => {
-    console.info(menu.some((el) => el.path === pathname));
     if (menu.some((el) => el.path === pathname)) {
       return "bg-teal-500";
     }
     return "bg-gray-50";
   }, [pathname]);
 
+  const navbarScrollClass = useMemo(() => {
+    if (isScroll) {
+      return "bg-white";
+    }
+    return "bg-white md:bg-transparent";
+  }, [isScroll]);
+
+  const handleNavScroll = () => {
+    if (window?.scrollY >= 100) {
+      setIsScroll(true);
+    } else {
+      setIsScroll(false);
+    }
+  };
+
+  useEffect(() => {
+    window.addEventListener("scroll", handleNavScroll);
+    return () => {
+      window.removeEventListener(handleNavScroll);
+    };
+  }, []);
+
   return (
-    <nav className="bg-white border-gray-200 px-2 sm:px-4 py-2.5 rounded">
+    <nav
+      className={`${navbarScrollClass} border-gray-200 px-2 sm:px-4 py-2.5 rounded fixed top-0 left-0 right-0 z-40 transition ease-in-out`}
+    >
       <div className="container flex flex-wrap justify-between items-center mx-auto">
         <Link to="/" className="flex items-center">
           <Logo />
@@ -67,7 +91,7 @@ const Navbar = () => {
             {menu.map((el) => (
               <li key={el.id}>
                 <Link
-                  to="company"
+                  to={el.path}
                   className={`block py-2 pr-4 pl-3 text-dark bg-gray-50 rounded md:bg-transparent md:text-dark md:p-0 ${navbarActiveClass}`}
                 >
                   {el.label}

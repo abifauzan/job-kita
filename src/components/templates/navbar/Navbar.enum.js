@@ -7,7 +7,7 @@ export const menu = [
   {
     id: 2,
     label: "Remote Jobs",
-    path: "/remote",
+    path: "/remotes",
   },
   {
     id: 3,
