@@ -10,7 +10,7 @@ const HeroHome = () => {
 
   return (
     <section className="flex flex-col bg-slate-200">
-      <div className="container px-4 md:px-20 py-9 md:py-32">
+      <div className="container px-4 md:px-0 py-9 md:py-32 mx-auto">
         <h2 className="font-semibold text-4xl md:text-[2.8rem] text-black mb-2 md:mb-6">
           Find <span className="text-teal-500 font-bold">Remote</span>
         </h2>
