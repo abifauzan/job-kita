@@ -7,7 +7,7 @@ Job Listing Website to enable job seekers find their dream jobs by implementing 
 
 ## Demo
 
-- [Click Here](https://613cb6ed912b770007b2a336--reverent-brahmagupta-a8da89.netlify.app/)
+- [Click Here](https://62373453c2e8e814b1e6653d--quizzical-darwin-a3171c.netlify.app/)
 
 This app is built using create-react-app command bellow:
 
