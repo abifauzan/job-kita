@@ -1,13 +1,20 @@
 import React from "react";
+import _isEmpty from "lodash/isEmpty";
 import JobFeature from "../../molecules/job-feature";
-import { jobs } from "./mockData";
-
-const JobFeatureList = () => {
+const JobFeatureList = ({ data, label = "Feature Jobs" }) => {
   return (
     <div className="flex flex-col gap-3 w-full">
-      <h3>Feature Jobs</h3>
+      <h3>{label}</h3>
 
-      <div className="w-full flex flex-col gap-3">{/* {jobs.map()} */}</div>
+      {_isEmpty(data) ? (
+        <span>Loading...</span>
+      ) : (
+        <div className="w-full flex flex-col gap-3">
+          {data.map((el) => (
+            <JobFeature key={el.id} data={el} />
+          ))}
+        </div>
+      )}
     </div>
   );
 };

@@ -9,11 +9,11 @@ const MainLayout = styled.main`
 
 const Layout = ({ children }) => {
   return (
-    <MainLayout className="mt-[76px] md:mt-0">
+    <MainLayout className="mt-[76px] md:mt-0 pb-10">
       <Navbar />
       <Hero />
 
-      {children}
+      <div className="container mt-10 px-4 md:px-0 mx-auto">{children}</div>
     </MainLayout>
   );
 };

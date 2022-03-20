@@ -1,6 +1,8 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 import Tag from "../../atoms/Tag/Tag";
+import { commitmentList } from "../../../utils/constant";
 
 const Header = styled.div`
   position: relative;
@@ -10,39 +12,34 @@ const Footer = styled.div`
   position: relative;
 `;
 
-const options = [
-  { key: 1, value: "FULL TIME", color: "bg-teal-700" },
-  { key: 2, value: "PART TIME", color: "bg-cyan-700" },
-  { key: 3, value: "REMOTE", color: "bg-fuchsia-700" },
-];
+const JobFeature = ({ data = [] }) => {
+  const { company, postedAt, slug, tags, title, commitment } = data;
 
-const JobFeature = () => {
   return (
-    <div className="border border-gray-300 rounded-md flex flex-col md:flex-row justify-around md:justify-between p-4 md:p-6">
+    <Link
+      to={`/${company.slug}/${slug}`}
+      className="border border-gray-300 rounded-md flex flex-col md:flex-row justify-around md:justify-between p-4 md:p-6"
+    >
       <Header className="flex flex-row justify-between items-center md:w-1/2">
         <div className="flex justify-center items-center w-[3.1rem] h-[3.1rem] md:w-[3.3rem] md:h-[3.3rem] p-2 mr-2 md:mr-3 rounded-full bg-gray-200">
-          <img
-            className="w-[1.5rem] md:w-[1.6rem]"
-            src="https://cdn.filestackcontent.com/uRGQ5QfTT8mforGeyUS5"
-            alt="company"
-          />
+          <img className="w-[1.5rem] md:w-[1.6rem]" src={company.logoUrl} alt={title} />
         </div>
         <div className="flex flex-col mr-auto">
-          <span className="text-lg">UI/UX Engineer</span>
-          <span className="text-gray-500">Google</span>
+          <span className="text-lg">{title}</span>
+          <span className="text-gray-500">{company.name}</span>
         </div>
 
-        <Tag options={options} value={1} />
+        <Tag options={commitmentList} value={commitment} />
       </Header>
       <Footer className="flex flex-col md:flex-row items-start md:items-center justify-between gap-2 mt-14 md:mt-0 md:w-1/2">
-        <div className="flex flex-row justify-start gap-3 md:pl-44">
-          <Tag options={options} size="small" value={1} />
-          <Tag options={options} size="small" value={2} />
-          <Tag options={options} size="small" value={3} />
+        <div className="flex flex-row flex-wrap justify-start gap-3 md:pl-44">
+          {tags.map((el, index) => (
+            <Tag key={index} options={tags} size="small" value={el.value} />
+          ))}
         </div>
-        <span className="text-gray-500">Posted 3 years ago</span>
+        <span className="text-gray-500">{postedAt}</span>
       </Footer>
-    </div>
+    </Link>
   );
 };
 export default JobFeature;

@@ -1,19 +1,17 @@
-import React, { useEffect, useState } from "react";
+import React, { useState, useEffect, useCallback, useMemo } from "react";
 import _isEmpty from "lodash/isEmpty";
 
-import Button from "../../components/atoms/Button";
 import JobDetailCard from "../../components/molecules/job-detail-card/JobDetailCard";
-import CompanyFeatureList from "../../components/organisms/company-feature-list";
-import JobFeatureList from "../../components/organisms/job-feature-list/JobFeatureList";
+import { getJobList } from "./JobList.query";
 import { apiRequest } from "../../configs/graphql";
-import { getJobFeatureQuery } from "./Home.query";
 import { NO_IMAGE_URL } from "../../utils/constant";
+import JobFeatureList from "../../components/organisms/job-feature-list/JobFeatureList";
 
-const Home = () => {
+const JobList = () => {
   const [data, setData] = useState([]);
 
-  const fetchData = async () => {
-    const response = await apiRequest(getJobFeatureQuery);
+  const fetchData = useCallback(async () => {
+    const response = await apiRequest(getJobList);
 
     if (!_isEmpty(response)) {
       const mappedData = response.jobs
@@ -37,31 +35,23 @@ const Home = () => {
               }))
               .filter((_, index) => index <= 2) || [],
         }))
-        .filter((el) => el.isFeatured);
+        .filter((el) => !el.isFeatured);
 
       setData(mappedData);
     }
-
-    // return response;
-  };
+  }, []);
 
   useEffect(() => {
     fetchData();
-  }, []);
+  }, [fetchData]);
+
+  console.info(data);
 
   return (
     <div>
-      <CompanyFeatureList />
-
-      <div className="mt-2 w-full">
-        <JobFeatureList data={data} />
-
-        <div className="w-full text-center my-4">
-          <Button className="w-full md:w-1/2 mx-0">More Jobs</Button>
-        </div>
-      </div>
+      <JobFeatureList label="Related Job Postings" data={data} />
     </div>
   );
 };
 
-export default Home;
+export default JobList;
