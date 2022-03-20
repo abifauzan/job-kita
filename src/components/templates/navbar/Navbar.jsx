@@ -48,7 +48,7 @@ const Navbar = () => {
           <Logo />
         </Link>
         <div className="flex md:order-2">
-          <Button>Post Job</Button>
+          <Button to="/post">Post Job</Button>
           <button
             data-collapse-toggle="mobile-menu-4"
             type="button"

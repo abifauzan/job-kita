@@ -7,6 +7,7 @@ import Layout from "./components/templates/Layout";
 import JobDetailpage from "./pages/job-detail";
 import JobListPage from "./pages/job-list";
 import SearchListPage from "./pages/search-list";
+import JobPostPage from "./pages/job-post";
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
         <Route path="/companies" element={<CompanyListPage />} />
         <Route path="/:companySlug/:jobSlug" element={<JobDetailpage />} />
         <Route path="/search" element={<SearchListPage />} />
+        <Route path="/post" element={<JobPostPage />} />
 
         {/* <Route component={<NotFound />} /> */}
       </Routes>

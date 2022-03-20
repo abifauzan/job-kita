@@ -1,5 +1,6 @@
 import React, { useMemo } from "react";
 import ButtonWrapper from "./Button.style";
+import { useNavigate } from "react-router-dom";
 
 const ButtonProperties = {
   primary: "bg-teal-500 hover:bg-teal-700 text-white",
@@ -16,15 +17,19 @@ const ButtonSize = {
 };
 
 const Button = (props) => {
+  const navigate = useNavigate();
+
   const {
     type = "primary",
     size = "regular",
     className = "",
     as = "button",
+    mode = "button",
     iconLeft,
     iconRight,
     children,
-    onClick,
+    onClick = () => {},
+    to,
     ...restProps
   } = props;
 
@@ -34,8 +39,24 @@ const Button = (props) => {
     [type, className, size]
   );
 
+  const handleOnClick = () => {
+    if (to !== undefined) {
+      navigate(to);
+      return;
+    }
+
+    onClick();
+    return;
+  };
+
   return (
-    <ButtonWrapper className={buttonClassname} as={as} onClick={onClick} {...restProps}>
+    <ButtonWrapper
+      className={buttonClassname}
+      as={as}
+      mode={mode}
+      onClick={handleOnClick}
+      {...restProps}
+    >
       {iconLeft}
       <span>{children}</span>
       {iconRight}
