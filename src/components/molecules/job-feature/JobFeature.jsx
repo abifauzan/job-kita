@@ -18,7 +18,7 @@ const JobFeature = ({ data = [] }) => {
   return (
     <Link
       to={`/${company.slug}/${slug}`}
-      className="border border-gray-300 rounded-md flex flex-col md:flex-row justify-around md:justify-between p-4 md:p-6"
+      className="border border-gray-300 rounded-md flex flex-col md:flex-row justify-around md:justify-between p-4 md:p-6 shadow hover:shadow-lg"
     >
       <Header className="flex flex-row justify-between items-center md:w-1/2">
         <div className="flex justify-center items-center w-[3.1rem] h-[3.1rem] md:w-[3.3rem] md:h-[3.3rem] p-2 mr-2 md:mr-3 rounded-full bg-gray-200">
@@ -37,7 +37,9 @@ const JobFeature = ({ data = [] }) => {
             <Tag key={index} options={tags} size="small" value={el.value} />
           ))}
         </div>
-        <span className="text-gray-500">{postedAt}</span>
+        <span className="text-gray-500 text-sm">
+          Posted on <span className="font-semibold">{postedAt}</span>
+        </span>
       </Footer>
     </Link>
   );

@@ -2,6 +2,15 @@ import React from "react";
 import Button from "../../atoms/Button";
 import SearchInput from "../../molecules/search-input";
 import { useNavigate } from "react-router-dom";
+import styled from "styled-components";
+
+const SectionWrapper = styled.section`
+  width: 100%;
+  background-image: url("/assets/images/undraw_hello_re_3evm.svg");
+  background-size: auto;
+  background-repeat: no-repeat;
+  background-position: left;
+`;
 
 const HeroHome = () => {
   const navigate = useNavigate();
@@ -16,7 +25,7 @@ const HeroHome = () => {
   };
 
   return (
-    <section className="flex flex-col bg-slate-200">
+    <section className="flex flex-col bg-gradient-to-l from-teal-100 to-gray-50">
       <div className="container px-4 md:px-0 pt-9 md:pt-32 mx-auto">
         <h2 className="font-semibold text-4xl md:text-[2.8rem] text-black mb-2 md:mb-6">
           Find <span className="text-teal-500 font-bold">Remote</span>
@@ -30,13 +39,13 @@ const HeroHome = () => {
 
         <div className="flex flex-row items-center gap-3 md:gap-5 mb-20">
           <span>Example: </span>
-          <Button type="secondary_outline" size="small">
+          <Button type="secondary_outline" size="small" to="/search?by=role&q=Front-End">
             Front-End
           </Button>
-          <Button type="secondary_outline" size="small">
+          <Button type="secondary_outline" size="small" to="/search?by=role&q=Back-End">
             Back-End
           </Button>
-          <Button type="secondary_outline" size="small">
+          <Button type="secondary_outline" size="small" to="/search?by=role&q=IOS">
             IOS Developer
           </Button>
         </div>

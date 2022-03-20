@@ -6,6 +6,7 @@ import { getJobList } from "./JobList.query";
 import { apiRequest } from "../../configs/graphql";
 import { NO_IMAGE_URL } from "../../utils/constant";
 import JobFeatureList from "../../components/organisms/job-feature-list/JobFeatureList";
+import { parseDate } from "../../utils/helper";
 
 const JobList = () => {
   const [data, setData] = useState([]);
@@ -25,7 +26,7 @@ const JobList = () => {
           },
           isFeatured: el?.isFeatured || false,
           slug: el?.slug || "-",
-          postedAt: el?.postedAt || "N/A",
+          postedAt: parseDate(el?.postedAt) || "N/A",
           commitment: el?.commitment.title,
           tags:
             el?.tags

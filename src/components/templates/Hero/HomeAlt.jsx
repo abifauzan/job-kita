@@ -18,7 +18,7 @@ const HeroHomeAlt = () => {
   };
 
   return (
-    <section className="flex flex-col bg-slate-200 relative">
+    <section className="flex flex-col bg-gradient-to-l from-teal-100 to-gray-50 relative">
       <div className="container px-4 md:px-0 pt-9 md:pt-32 mx-auto">
         <h2 className="font-semibold text-4xl md:text-[2.8rem] text-black mb-2 md:mb-6">
           Discover The

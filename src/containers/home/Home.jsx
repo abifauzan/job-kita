@@ -2,12 +2,11 @@ import React, { useEffect, useState } from "react";
 import _isEmpty from "lodash/isEmpty";
 
 import Button from "../../components/atoms/Button";
-import JobDetailCard from "../../components/molecules/job-detail-card/JobDetailCard";
-import CompanyFeatureList from "../../components/organisms/company-feature-list";
 import JobFeatureList from "../../components/organisms/job-feature-list/JobFeatureList";
 import { apiRequest } from "../../configs/graphql";
 import { getJobFeatureQuery } from "./Home.query";
 import { NO_IMAGE_URL } from "../../utils/constant";
+import { parseDate } from "../../utils/helper";
 
 const Home = () => {
   const [data, setData] = useState([]);
@@ -27,7 +26,7 @@ const Home = () => {
           },
           isFeatured: el?.isFeatured || false,
           slug: el?.slug || "-",
-          postedAt: el?.postedAt || "N/A",
+          postedAt: parseDate(el?.postedAt) || "N/A",
           commitment: el?.commitment.title,
           tags:
             el?.tags
@@ -51,13 +50,11 @@ const Home = () => {
 
   return (
     <div>
-      <CompanyFeatureList />
-
       <div className="mt-2 w-full">
         <JobFeatureList data={data} />
 
         <div className="w-full text-center my-4">
-          <Button className="w-full md:w-1/2 mx-0">More Jobs</Button>
+          <Button className="w-full md:w-1/4 mx-0">More Jobs</Button>
         </div>
       </div>
     </div>

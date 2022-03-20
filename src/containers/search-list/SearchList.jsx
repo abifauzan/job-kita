@@ -8,6 +8,7 @@ import { NO_IMAGE_URL } from "../../utils/constant";
 import JobFeatureList from "../../components/organisms/job-feature-list/JobFeatureList";
 import { useLocation } from "react-router-dom";
 import qs from "query-string";
+import { parseDate } from "../../utils/helper";
 
 const mapData = (arr) => {
   return arr.map((el) => ({
@@ -20,7 +21,7 @@ const mapData = (arr) => {
     },
     isFeatured: el?.isFeatured || false,
     slug: el?.slug || "-",
-    postedAt: el?.postedAt || "N/A",
+    postedAt: parseDate(el?.postedAt) || "N/A",
     commitment: el?.commitment.title,
     tags:
       el?.tags
