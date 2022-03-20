@@ -24,6 +24,7 @@ const Button = (props) => {
     iconLeft,
     iconRight,
     children,
+    onClick,
     ...restProps
   } = props;
 
@@ -34,7 +35,7 @@ const Button = (props) => {
   );
 
   return (
-    <ButtonWrapper className={buttonClassname} as={as} {...restProps}>
+    <ButtonWrapper className={buttonClassname} as={as} onClick={onClick} {...restProps}>
       {iconLeft}
       <span>{children}</span>
       {iconRight}

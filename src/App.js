@@ -6,6 +6,7 @@ import CompanyListPage from "./pages/company-list";
 import Layout from "./components/templates/Layout";
 import JobDetailpage from "./pages/job-detail";
 import JobListPage from "./pages/job-list";
+import SearchListPage from "./pages/search-list";
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
         <Route path="/remotes" element={<JobListPage />} />
         <Route path="/companies" element={<CompanyListPage />} />
         <Route path="/:companySlug/:jobSlug" element={<JobDetailpage />} />
+        <Route path="/search" element={<SearchListPage />} />
 
         {/* <Route component={<NotFound />} /> */}
       </Routes>

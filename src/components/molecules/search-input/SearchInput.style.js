@@ -1,8 +1,6 @@
 import styled from "styled-components";
 
-export const Wrapper = styled.div`
-  position: relative;
-`;
+export const Wrapper = styled.div``;
 
 export const IconWrapper = styled.div`
   /* padding: 0.5rem; */

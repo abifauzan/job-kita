@@ -13,15 +13,7 @@ const Footer = styled.div`
   position: relative;
 `;
 
-const options = [
-  { key: 1, value: "FULL TIME", color: "bg-teal-700" },
-  { key: 2, value: "PART TIME", color: "bg-cyan-700" },
-  { key: 3, value: "REMOTE", color: "bg-fuchsia-700" },
-];
-
 const JobDetailCard = ({ data }) => {
-  console.info(data);
-
   const { cities, commitment, company, description, postedAt, slug, tags, title } = data;
 
   return (
